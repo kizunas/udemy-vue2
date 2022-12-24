@@ -7,5 +7,9 @@ Vue.use(Vuex); //Vue.useは指定したプラグイン（今回はVuex）を全�
 export default new Vuex.Store({    //storeはデータを置いておく場所というイメージ
   state: {  //全体で使えるグローバル変数みたいなものを作る。
     count: 2
+  },
+  getters: {  // 関数を書く
+    doubleCount: state => state.count * 2,
+    tripleCount: state => state.count * 3  
   }
 }); 
