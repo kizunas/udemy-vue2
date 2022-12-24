@@ -19,11 +19,16 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+// import { mapActions } from "vuex";
 
 export default {
   methods: {
-    ...mapActions("count", ["increment", "decrement"])
+    increment() {
+      this.$store.state.count++;
+    },
+    decrement() {
+      this.$store.state.count--;
+    }
   }
 };
 </script>
