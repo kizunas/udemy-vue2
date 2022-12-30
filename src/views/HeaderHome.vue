@@ -13,8 +13,9 @@
       exact
       class="link"
     >Users</router-link>
-    <button @click="increment(2)">+1</button>
-    <button @click="decrement(2)">-1</button>
+    <h1>{{ counter }}</h1>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
   </nav>
 </template>
 
@@ -24,10 +25,15 @@
 export default {
   methods: {
     increment() {
-      this.$store.state.count++;
-    },
+      this.$store.commit('increment', 1) // mutationsを実行した場合は、commit('実行したい関数名')を使う
+    },                                   // 今回は第二引数があるのでcommit('increment', 1)と記述。
     decrement() {
-      this.$store.state.count--;
+      this.$store.commit('decrement', 1) // 今回は第二引数があるのでcommit('decrement', 1)と記述。
+    },
+  },
+  computed: {
+    counter() {
+      return this.$store.state.count;
     }
   }
 };

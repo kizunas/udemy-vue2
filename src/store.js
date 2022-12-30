@@ -11,5 +11,13 @@ export default new Vuex.Store({    //storeはデータを置いておく場所�
   getters: {  // 関数を書く
     doubleCount: state => state.count * 2,
     tripleCount: state => state.count * 3  
+  },
+  mutations: {  // mutationsで値を変える（他で値を替えるとややこしくなるため、基本的にmutations以外で値を替えないように
+    increment(state, number) { //第一引数はstateを取る。
+      state.count += number;
+    },
+    decrement(state, number) { 
+      state.count -= number;
+    }
   }
 }); 
