@@ -19,5 +19,19 @@ export default new Vuex.Store({    //storeはデータを置いておく場所�
     decrement(state, number) { 
       state.count -= number;
     }
+  },
+  actions: {
+    increment(context, number) {
+      context.commit("increment", number);  // commitでmutationsのincrementを発火している。
+      context.dispatch("resetCounter")
+    },
+    decrement({commit}, number) {     //ES6ではcontextと書かず、使いたいものをオブジェクトで書くこともできる。
+      commit("decrement", number);
+    },
+    resetCounter(context) {
+      setTimeout(() => {
+        context.state.count = 0;
+      }, 5000)
+    }
   }
 }); 

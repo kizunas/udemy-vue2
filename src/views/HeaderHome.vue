@@ -14,17 +14,21 @@
       class="link"
     >Users</router-link>
     <h1>{{ counter }}</h1>
-    <button @click="increment(2)">+1</button>
-    <button @click="decrement(2)">-1</button>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
   </nav>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
 export default {
   methods: {
-    ...mapMutations(["increment", "decrement"])
+    increment() {
+      this.$store.dispatch("increment", 2)
+    },
+    decrement() {
+      this.$store.dispatch("decrement", 2)
+      this.$store.dispatch("resetCounter")
+    },
   },
   computed: {
     counter() {
