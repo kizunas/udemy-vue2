@@ -12,26 +12,16 @@ export default new Vuex.Store({    //storeはデータを置いておく場所�
     doubleCount: state => state.count * 2,
     tripleCount: state => state.count * 3  
   },
-  mutations: {  // mutationsで値を変える（他で値を替えるとややこしくなるため、基本的にmutations以外で値を替えないように
-    increment(state, number) { //第一引数はstateを取る。
-      state.count += number;
-    },
-    decrement(state, number) { 
-      state.count -= number;
+  mutations: {
+    testMutation(state, userData) {
+      const userAllData = 'userCounter:' + state.count + ', ' + userData
+      console.log(userAllData)
     }
   },
-  actions: {
-    increment(context, number) {
-      context.commit("increment", number);  // commitでmutationsのincrementを発火している。
-      context.dispatch("resetCounter")
-    },
-    decrement({commit}, number) {     //ES6ではcontextと書かず、使いたいものをオブジェクトで書くこともできる。
-      commit("decrement", number);
-    },
-    resetCounter(context) {
-      setTimeout(() => {
-        context.state.count = 0;
-      }, 5000)
+  actions: {// 複数の引数を得たい場合は、第二引数をオブジェクトにする。
+    testAction({ commit }, { userId, userName }) {
+      const userData = 'userId:' + userId + ', userName:' + userName
+      commit('testMutation', userData)
     }
   }
 }); 
