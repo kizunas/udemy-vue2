@@ -14,19 +14,16 @@
       class="link"
     >Users</router-link>
     <h1>{{ counter }}</h1>
-    <button @click="test()">+1</button>
+    <button @click="increment(2)">+1</button>
+    <button @click="decrement(2); resetCounter()">-1</button>
   </nav>
 </template>
 
 <script>
-
+import { mapActions } from 'vuex';
 export default {
   methods: {
-    test() {
-      const id = 1
-      const name = 'userA'
-      this.$store.dispatch('testAction', { userId: id, userName: name })
-    }
+    ...mapActions(["increment", "decrement", "resetCounter"])
   },
   computed: {
     counter() {
