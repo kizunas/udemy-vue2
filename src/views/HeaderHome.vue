@@ -27,7 +27,8 @@ export default {
   },
   computed: {
     counter() {
-      return this.$store.state.count;
+      console.log(this.$store.state); // countがオブジェクトになっていることに注意
+      return this.$store.state.count.count;
     }
   }
 };
