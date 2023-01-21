@@ -7,10 +7,12 @@ Vue.use(Vuex); //Vue.useは指定したプラグイン（今回はVuex）を全�
 export default new Vuex.Store({    //storeはデータを置いておく場所というイメージ
   state: {  //全体で使えるグローバル変数みたいなものを作る。
     count: 2,
+    message: ''
   },
   getters: {  // 関数を書く
     doubleCount: state => state.count * 2,
     tripleCount: state => state.count * 3 ,
+    message: state => state.message
   },
   mutations: {  // mutationsで値を変える（他で値を替えるとややこしくなるため、基本的にmutations以外で値を替えないように
     increment(state, number) { //第一引数はstateを取る。
@@ -19,6 +21,9 @@ export default new Vuex.Store({    //storeはデータを置いておく場所�
     decrement(state, number) { 
       state.count -= number;
     },
+    updateMessage(state, newMessage) { 
+      state.message = newMessage;
+    }
   },
   actions: {
     increment(context, number) {
@@ -32,6 +37,9 @@ export default new Vuex.Store({    //storeはデータを置いておく場所�
       setTimeout(() => {
         context.state.count = 0;
       }, 5000)
+    },
+    updateMessage({commit}, newMessage) {     
+      commit("updateMessage", newMessage);
     },
   }
 }); 
