@@ -4,7 +4,7 @@
     <button @click="toUsers">Usersのページに行く</button>
     <p>{{ doubleCount }}</p>
     <p>{{ tripleCount }}</p>
-    <input type="text" :value="message" @input="updateMssage">
+    <input type="text" v-model="message">
     <p>{{ message }}</p>
   </div>
 </template>
@@ -15,15 +15,16 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters(["doubleCount", "tripleCount"]),
-    message() {
-      return this.$store.getters.message;
+    message: { // getterとsetterをつかう。
+      get() {
+        return this.$store.getters.message; // computedのgetterでstoreのgetterを取得
+      },
+      set(value) {
+        this.$store.dispatch("updateMessage", value) // computedのsetterでinputの変化をv-modelから第一引数経由で取得。その値をdispatchでstoreのactionへ伝える。
+      }
     }
   },
   methods: {
-    updateMssage(e) { // イベントを取得し、actionへ値を送る。
-      this.$store.dispatch("updateMessage", e.target.value)
-      console.log(e);
-    },
     toUsers() {
       this.$router.push({
         name: "users-id-profile",
