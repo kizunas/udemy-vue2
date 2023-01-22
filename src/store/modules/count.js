@@ -28,6 +28,7 @@ const actions = {
   },
 };
 export default { // importできるようにする。また使えるようにしたい上記の変数を記述する。
+  namespaced: true, // これを使うことでこの「'ファイルがindex.jsの場合はディレクトリ名 or ファイル名がindex.jsではない場合はファイル名'」/「'state or getters or mutations or actions内の関数名'」という認識をしてくれる。
   state,
   getters,
   mutations,

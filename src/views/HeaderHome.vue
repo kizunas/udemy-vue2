@@ -23,7 +23,7 @@
 import { mapActions } from 'vuex';
 export default {
   methods: {
-    ...mapActions(["increment", "decrement", "resetCounter"])
+    ...mapActions("count", ["increment", "decrement", "resetCounter"])
   },
   computed: {
     counter() {

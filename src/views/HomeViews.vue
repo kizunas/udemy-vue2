@@ -10,11 +10,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(["doubleCount", "tripleCount"]),
+    // ...mapGetters("count", ["doubleCount", "tripleCount"]), // map〇〇を使う場合は第一引数に名前空間の名をつける。すなわち「'ファイルがindex.jsの場合はディレクトリ名 or ファイル名がindex.jsではない場合はファイル名'」を記述
+    doubleCount() {
+      return this.$store.getters["count/doubleCount"] // 配列に「'ファイルがindex.jsの場合はディレクトリ名 or ファイル名がindex.jsではない場合はファイル名'」/「'state or getters or mutations or actions内の関数名'」を記述
+    },
+    tripleCount() {
+      return this.$store.getters["count/tripleCount"]
+    },
     message: { // getterとsetterをつかう。
       get() {
         return this.$store.getters.message; // computedのgetterでstoreのgetterを取得
