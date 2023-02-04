@@ -10,8 +10,12 @@
 
 <script>
 export default {
-  created() {
-    console.log("createdされました");
+  watch: {
+    $route(to, from) { // to, fromの名前は何でもよい。第一引数が新しい値、第二引数が古い値を返してくれる。
+      console.log(to);
+      console.log(from);
+      console.log("$routerが変わった" + from.params.id + "から" + to.params.id);
+    }
   }
 }
 </script>
